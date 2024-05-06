@@ -1,31 +1,49 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { RxCross2 } from "react-icons/rx";
+import "../style.css";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { IoMdFlower } from "react-icons/io";
-// import "../style.css";
+import MobileMenu from "./MobileMenu";
 
 function Navbar() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [shouldHideMenu, setShouldHideMenu] = useState(true);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleMenuToggle = () => {
     setIsMenuVisible(!isMenuVisible);
+
+    if (!isMenuVisible) {
+      setShouldHideMenu(false);
+    } else {
+      setTimeout(() => setShouldHideMenu(true), 500);
+    }
   };
 
-  const links = [
+  const linksLeft = [
     { label: "", id: "main" },
-    { label: "Dlaczego my", id: "appPros" },
+    { label: "Produkty", id: "appPros" },
+    { label: "O nas", id: "aboutUs" },
     { label: "Pakiety", id: "packages" },
-    { label: "Panel analiz", id: "analysisPanel" },
     { label: "Jak działamy", id: "howWeWork" },
-    { label: "Panel typów", id: "" }
+    { label: "FAQ", id: "faq" },
+    { label: "Kontakt", id: "contact" }
   ];
 
   return (
-    <nav className="sticky top-0 z-50 shadow-md border-b border-[#366340] bg-[#4d7455] font-jakarta">
-      <div className="container mx-auto md:px-2 px-5 py-6">
-        <div className="flex justify-between">
-          <div className="hidden lg:flex items-center space-x-1">
-            <div className="pr-5">
+    <nav className="sticky top-0 z-50 shadow-md border-b border-[#366340] bg-no-repeat bg-cover font-gabarito bg-[#4d7455]">
+      <div className="container mx-auto py-2">
+        <div
+          className={`flex ${
+            isMenuVisible ? "justify-end" : "justify-between"
+          }`}
+        >
+          <div className="hidden xl:flex items-center">
+            <div className="pr-2">
               <button className="flex items-center gap-5">
                 <IoMdFlower size={40} color="#F9F02D" />
                 <span className="font-bold text-2xl text-[#F9F02D]">
@@ -33,33 +51,62 @@ function Navbar() {
                 </span>
               </button>
             </div>
-            {links.map(
+            {linksLeft.map(
               ({ label, id }, index) =>
                 index !== 0 && (
                   <button
                     key={id}
-                    className="py-1 px-3 text-[#EFF5FF] link link-underline link-underline-black no-underline"
+                    className="px-2 text-[#EFF5FF] link link-underline link-underline-black no-underline"
                   >
                     {label}
                   </button>
                 )
             )}
+            <Link
+              href="../career"
+              className="px-2 text-[#EFF5FF] link link-underline link-underline-black no-underline"
+            >
+              Kariera
+            </Link>
           </div>
-          <div className="hidden lg:flex flex-row justify-center text-[#F9F02D] gap-8 pl-8">
-            <button>Zaloguj się</button>
-            <button className="border border-[#F9F02D] rounded-lg px-10">
-              Załóż konto
-            </button>
-            {/* show side menu */}
-            <button className="mobile-menu-button">
-              <RxHamburgerMenu size={32} color="#EFF5FF" />
-            </button>
+          <div className="hidden xl:flex flex-row justify-center gap-4 items-center">
+            <div>
+              <button className="border border-[#F9F02D] py-2 rounded-lg px-6 text-[#F9F02D]">
+                Logowanie / Rejestracja
+              </button>
+            </div>
           </div>
-          <div className="lg:hidden flex items-center">
+          {/* show mobile menu  */}
+          <div
+            className={`xl:hidden flex items-center pl-1 ${
+              isMenuVisible && "hidden"
+            }`}
+          >
+            <a href="#" className="flex items-center">
+              <button className="flex items-center gap-5">
+                <IoMdFlower size={40} color="#F9F02D" />
+                <span className="font-bold text-2xl text-[#F9F02D]">
+                  E-Flora
+                </span>
+              </button>
+            </a>
+          </div>
+          <div className="xl:hidden flex items-center pr-1 justify-end">
             <button className="mobile-menu-button" onClick={handleMenuToggle}>
-              <RxHamburgerMenu size={32} color="#EFF5FF" />
+              {isMenuVisible ? (
+                <RxCross2 size={24} color="#EFF5FF" />
+              ) : (
+                <RxHamburgerMenu size={24} color="#EFF5FF" />
+              )}
             </button>
           </div>
+        </div>
+        <div
+          className={`xl:hidden pt-2 ${
+            isMenuVisible ? "mobileMenu-open" : "mobileMenu-close"
+          } ${shouldHideMenu && "hidden"}`}
+        >
+          <MobileMenu />
         </div>
       </div>
     </nav>

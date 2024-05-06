@@ -17,3 +17,29 @@
   background-size: 100% 3px;
   background-position: 0 100%;
 }
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.mobileMenu-open {
+  animation: slideInFromRight 0.5s forwards;
+}
+
+.mobileMenu-close {
+  animation: slideOutToRight 0.5s forwards;
+}
