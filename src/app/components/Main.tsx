@@ -16,22 +16,19 @@ export default function Main() {
   }, []);
 
   return (
-    <div
-      id="main"
-      className={` md:rounded-b-[60px] rounded-b-0 relative bg-no-repeat bg-center `}
-    >
+    <div id="main" className={` md:rounded-b-[60px] rounded-b-0`}>
       <div className="container mx-auto md:px-5">
         <div className="flex lg:flex-row flex-col items-center">
           <div className="flex flex-col items-center md:items-start px-5 md:px-0 justify-center">
-            <div className="flex flex-col text-black lg:text-[80px] text-[36px] font-normal pb-5 md:pt-20 pt-10 lg:w-[835px]">
+            <div className="flex flex-col text-black lg:text-[80px] text-[36px] font-normal  2xl:pt-20 xl:py-5 lg:w-[835px]">
               <p>
                 Kwiatowa Oaza: Ożywiaj życie
-                <span className="text-[#366340]"> kwiatową magią </span>
+                <span className="text-[#4d7455]"> kwiatową magią </span>
                 każdego dnia
               </p>
             </div>
             <div className="">
-              <p className="font-normal md:text-base text-[15px] text-black md:py-7 md:w-[488px]">
+              <p className="font-normal md:text-base text-[15px] text-black md:pb-5 md:w-[488px]">
                 Kwiatowa Oaza to więcej niż zwykły sklep z kwiatami. To miejsce,
                 w którym kwiaty stają się historią, emocją i inspiracją. Nasza
                 misja to przekształcanie codzienności w niezapomniane chwile za
@@ -39,7 +36,7 @@ export default function Main() {
               </p>
             </div>
             <div className="flex flex-row gap-5 md:text-lg text-base md:pt-0 pt-5">
-              <button className="bg-[#366340] md:px-10 px-4 py-1.5 rounded-md">
+              <button className="bg-[#F9F02D] md:px-10 px-4 py-1.5 rounded-md">
                 Załóż konto teraz
               </button>
               <button className="border md:border-[#366340] border-white md:px-10 px-4 py-1.5 md:text-[#366340] text-white rounded-md">

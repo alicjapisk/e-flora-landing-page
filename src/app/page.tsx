@@ -25,7 +25,7 @@ export default function Home() {
         style={{
           backgroundImage: `url(${isLGScreen ? HeroBg.src : HeroBgMobile.src})`
         }}
-        className="bg-no-repeat bg-cover min-h-[100vh] bg-white"
+        className="bg-no-repeat bg-cover min-h-[100vh] "
       >
         <Main />
       </div>
