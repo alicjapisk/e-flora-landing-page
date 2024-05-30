@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useLayoutEffect, useState } from "react";
+import HeroBg from "../../../public/assets/HeroBg3.webp";
+import HeroBgMobile from "../../../public/assets/HeroBgMobile.webp";
 
 export default function Main() {
   const [isLGScreen, setIsLGScreen] = useState(true);
@@ -16,7 +18,13 @@ export default function Main() {
   }, []);
 
   return (
-    <div id="main" className={` md:rounded-b-[60px] rounded-b-0`}>
+    <div
+      id="main"
+      style={{
+        backgroundImage: `url(${isLGScreen ? HeroBg.src : HeroBgMobile.src})`
+      }}
+      className="bg-no-repeat bg-cover min-h-[100vh] "
+    >
       <div className="container mx-auto md:px-5">
         <div className="flex lg:flex-row flex-col items-center">
           <div className="flex flex-col items-center md:items-start px-5 md:px-0 justify-center">
